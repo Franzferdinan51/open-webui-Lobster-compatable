@@ -340,4 +340,14 @@ MIT License - Based on OpenWebUI
 **OpenWebUI:** https://github.com/open-webui/open-webui  
 **Agent Mesh:** https://github.com/Franzferdinan51/agent-mesh-api  
 **ClawHub:** https://clawhub.com  
-**ClawTabs:** https://github.com/marty-mcbyte/ClawTabs
+**ClawTabs:** https://github.com/marty-mcbyte/ClawTabs  
+
+---
+
+## 💰 Support Development
+
+If you find OpenWebUI Lobster Edition useful, consider supporting development:
+
+**Bitcoin:** `bc1q733czwuelntfug8jgur6md2lhzcx7l5ufks9y7`
+
+🐙🦆
