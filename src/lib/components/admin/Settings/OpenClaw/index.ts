@@ -16,3 +16,4 @@ export { default as GatewayDiscovery } from './GatewayDiscovery.svelte';
 export { default as MeshDashboard } from './MeshDashboard.svelte';
 export { default as WebSocket } from './WebSocket.svelte';
 export { default as DeviceAuth } from './DeviceAuth.svelte';
+export { default as SkillsManager } from './SkillsManager.svelte';

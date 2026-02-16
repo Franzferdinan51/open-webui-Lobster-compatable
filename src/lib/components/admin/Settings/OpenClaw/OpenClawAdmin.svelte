@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { Overview, Agents, Channels, Cron, Nodes, Sessions, Logs, Usage, Skills, MeshDashboard, WebSocket, DeviceAuth } from './index';
+  import { Overview, Agents, Channels, Cron, Nodes, Sessions, Logs, Usage, Skills, MeshDashboard, WebSocket, DeviceAuth, SkillsManager } from './index';
   
-  type TabId = 'overview' | 'agents' | 'channels' | 'cron' | 'nodes' | 'sessions' | 'logs' | 'usage' | 'skills' | 'mesh' | 'websocket' | 'device';
+  type TabId = 'overview' | 'agents' | 'channels' | 'cron' | 'nodes' | 'sessions' | 'logs' | 'usage' | 'skills' | 'mesh' | 'websocket' | 'device' | 'skillsmanager';
   
   let activeTab: TabId = 'overview';
   let connected = false;
@@ -39,6 +39,7 @@
     { id: 'mesh', label: 'Mesh', icon: '🌐' },
     { id: 'websocket', label: 'WS', icon: '🔌' },
     { id: 'device', label: 'Device', icon: '📱' },
+    { id: 'skillsmanager', label: 'Skills+', icon: '🧩' },
   ];
   
   async function fetchData() {
@@ -145,6 +146,8 @@
       <WebSocket />
     {:else if activeTab === 'device'}
       <DeviceAuth />
+    {:else if activeTab === 'skillsmanager'}
+      <SkillsManager {skills} {loading} />
     {/if}
   </div>
 </div>
