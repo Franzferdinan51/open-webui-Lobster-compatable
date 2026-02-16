@@ -298,10 +298,18 @@ MIT License - Based on OpenWebUI
 
 **OpenClaw Agent First WebUI** - Built for Multi-Agent AI Orchestration
 
+### Built With
 - 🦞 **DuckBot** - The AI assistant running this instance
 - 🤖 **Agent Smith** - Windows agent partner
 - 🌐 **Agent Mesh** - Multi-agent communication network
 - 🔗 **OpenClaw** - The agent framework powering it all
+
+### Generative UI Inspired By
+- 🎨 **Morphic** - AI-generated interfaces
+- 🃏 **CopilotKit** - Copilot-style UI components
+- 📡 **AG-UI Protocol** - Agent-Generated UI protocol
+- 🔍 **Brave Search** - Web search integration
+- 🧠 **Exa/Tavily** - AI-powered search
 
 ### Links
 
