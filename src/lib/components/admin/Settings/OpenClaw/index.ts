@@ -9,3 +9,5 @@ export { default as Sessions } from './Sessions.svelte';
 export { default as Logs } from './Logs.svelte';
 export { default as Usage } from './Usage.svelte';
 export { default as Skills } from './Skills.svelte';
+export { default as Instances } from './Instances.svelte';
+export { default as ExecApprovals } from './ExecApprovals.svelte';
