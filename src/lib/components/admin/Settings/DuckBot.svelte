@@ -9,6 +9,10 @@
 
 	// DuckBot Features
 	let agentSmithConnected = true;
+	let agentSmithStatus = 'Connected';
+	let agentMeshUrl = 'http://100.106.80.61:18789';
+	let openclawGateway = 'http://localhost:18789';
+	let comfyuiUrl = 'http://localhost:8188';
 	let minimaxEnabled = true;
 	let lmStudioEnabled = true;
 	let comfyuiEnabled = true;

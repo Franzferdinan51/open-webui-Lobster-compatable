@@ -9,7 +9,8 @@
     if (totalSeconds < 60) return `${totalSeconds}s remaining`;
     const minutes = Math.floor(totalSeconds / 60);
     if (minutes < 60) return `${minutes}m remaining`;
-    const hours = Math.floor(minutes / 60) return `${hours}h remaining`;
+    const hours = Math.floor(minutes / 60);
+    return `${hours}h remaining`;
   }
   
   function getStatusColor(approved: boolean | null): string {
