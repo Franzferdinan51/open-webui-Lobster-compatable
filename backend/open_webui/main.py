@@ -114,6 +114,12 @@ from open_webui.plugins.openclaw_control.routers import config as control_config
 from open_webui.plugins.openclaw_control.routers import channels as control_channels
 from open_webui.plugins.openclaw_control.routers import skills as control_skills
 from open_webui.plugins.openclaw_control.routers import management as control_management
+from open_webui.plugins.openclaw_control.routers import agents as control_agents
+from open_webui.plugins.openclaw_control.routers import cron as control_cron
+from open_webui.plugins.openclaw_control.routers import nodes as control_nodes
+from open_webui.plugins.openclaw_control.routers import sessions as control_sessions
+from open_webui.plugins.openclaw_control.routers import logs as control_logs
+from open_webui.plugins.openclaw_control.routers import usage as control_usage
 
 # Generative UI Plugin
 from open_webui.plugins.generative_ui.routers import search as genui_search
@@ -1517,6 +1523,12 @@ app.include_router(control_config.router, prefix="/openclaw-control", tags=["ope
 app.include_router(control_channels.router, prefix="/openclaw-control", tags=["openclaw-control-channels"])
 app.include_router(control_skills.router, prefix="/openclaw-control", tags=["openclaw-control-skills"])
 app.include_router(control_management.router, prefix="/openclaw-control", tags=["openclaw-control-management"])
+app.include_router(control_agents.router, prefix="/openclaw-control", tags=["openclaw-control-agents"])
+app.include_router(control_cron.router, prefix="/openclaw-control", tags=["openclaw-control-cron"])
+app.include_router(control_nodes.router, prefix="/openclaw-control", tags=["openclaw-control-nodes"])
+app.include_router(control_sessions.router, prefix="/openclaw-control", tags=["openclaw-control-sessions"])
+app.include_router(control_logs.router, prefix="/openclaw-control", tags=["openclaw-control-logs"])
+app.include_router(control_usage.router, prefix="/openclaw-control", tags=["openclaw-control-usage"])
 
 # Generative UI Plugin
 app.include_router(genui_search.router, prefix="/generative-ui", tags=["generative-ui-search"])
