@@ -115,6 +115,11 @@ from open_webui.plugins.openclaw_control.routers import channels as control_chan
 from open_webui.plugins.openclaw_control.routers import skills as control_skills
 from open_webui.plugins.openclaw_control.routers import management as control_management
 
+# Generative UI Plugin
+from open_webui.plugins.generative_ui.routers import search as genui_search
+from open_webui.plugins.generative_ui.routers import components as genui_components
+from open_webui.plugins.generative_ui.routers import agui as genui_agui
+
 from open_webui.routers.retrieval import (
     get_embedding_function,
     get_reranking_function,
@@ -1512,6 +1517,11 @@ app.include_router(control_config.router, prefix="/openclaw-control", tags=["ope
 app.include_router(control_channels.router, prefix="/openclaw-control", tags=["openclaw-control-channels"])
 app.include_router(control_skills.router, prefix="/openclaw-control", tags=["openclaw-control-skills"])
 app.include_router(control_management.router, prefix="/openclaw-control", tags=["openclaw-control-management"])
+
+# Generative UI Plugin
+app.include_router(genui_search.router, prefix="/generative-ui", tags=["generative-ui-search"])
+app.include_router(genui_components.router, prefix="/generative-ui", tags=["generative-ui-components"])
+app.include_router(genui_agui.router, prefix="/generative-ui", tags=["generative-ui-agui"])
 
 app.include_router(memories.router, prefix="/api/v1/memories", tags=["memories"])
 app.include_router(folders.router, prefix="/api/v1/folders", tags=["folders"])

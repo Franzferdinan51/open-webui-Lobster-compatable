@@ -43,6 +43,16 @@ This is **OpenWebUI Lobster Edition** - a fork of OpenWebUI with **full OpenClaw
 - 🌐 **Node Management** - View connected nodes
 - 📋 **Logs** - View OpenClaw logs
 
+### Generative UI (NEW)
+
+- 🔮 **AI Search** - Morphic-style generative search (Brave, SearXNG, Exa, Tavily)
+- 🎨 **Dynamic Components** - CopilotKit-style generative UI components
+- 📡 **AG-UI Protocol** - Agent-Generated UI protocol support
+- 🃏 **UI Cards** - AI-generated content cards
+- 📊 **Charts** - Dynamic chart generation
+- 📝 **Forms** - AI-generated input forms
+- 📋 **Tables** - Dynamic data tables
+
 ### Original OpenWebUI Features (All Included)
 
 - 🚀 **Intuitive UI** - For Ollama, OpenAI, LM Studio, and compatible APIs
@@ -142,6 +152,17 @@ AGENT_MESH_ENABLED=true
 | `/openclaw-control/api/openclaw/sessions` | View sessions |
 | `/openclaw-control/api/openclaw/nodes` | View nodes |
 | `/openclaw-control/api/openclaw/logs` | View logs |
+
+## 📡 Generative UI Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `/generative-ui/api/generative/search` | AI-powered search |
+| `/generative-ui/api/generative/search/providers` | Search providers |
+| `/generative-ui/api/generative/ui/component` | Generate UI component |
+| `/generative-ui/api/generative/ui/component/types` | Component types |
+| `/generative-ui/api/generative/agui/chat` | AG-UI chat |
+| `/generative-ui/api/generative/agui/protocol` | Protocol info |
 
 ## 🔌 Compatibility
 
