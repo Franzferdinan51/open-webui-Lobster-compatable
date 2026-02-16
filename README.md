@@ -42,6 +42,21 @@ This is **OpenWebUI Lobster Edition** - the **first WebUI designed specifically 
 - 💻 **Session Management** - View active sessions
 - 🌐 **Node Management** - View connected nodes
 - 📋 **Logs** - View OpenClaw logs
+- 📊 **Usage Metrics** - Track API usage and costs
+
+### Agent Integration
+
+- 🤖 **Agent Registration** - Register this agent with Agent Mesh
+- 💬 **Test Chat** - Test agent communication
+- 🔍 **Gateway Discovery** - Auto-scan local network for gateways
+- 🔗 **Connection Status** - View connection health
+
+### Gateway Discovery (From ClawTabs)
+
+- 🔍 **Auto-Scan** - Scan local network for OpenClaw gateways
+- 🌐 **Multi-Subnet** - Scans 192.168.x.x, 10.x.x.x networks
+- ⚡ **Fast Discovery** - Parallel scanning with latency measurement
+- 🎯 **One-Click Connect** - Select and connect to discovered gateways
 
 ### Generative UI (NEW)
 
@@ -311,10 +326,18 @@ MIT License - Based on OpenWebUI
 - 🔍 **Brave Search** - Web search integration
 - 🧠 **Exa/Tavily** - AI-powered search
 
+### Gateway Discovery From
+- 🔍 **ClawTabs** - Multi-agent command hub for AI coordination
+  - Auto-scan local network for gateways
+  - Channel-based multi-agent coordination
+  - Real-time agent presence
+  - [GitHub](https://github.com/marty-mcbyte/ClawTabs)
+
 ### Links
 
 **Repository:** https://github.com/Franzferdinan51/Open-WebUi-Lobster-Edition  
 **OpenClaw:** https://github.com/openclaw/openclaw  
 **OpenWebUI:** https://github.com/open-webui/open-webui  
 **Agent Mesh:** https://github.com/Franzferdinan51/agent-mesh-api  
-**ClawHub:** https://clawhub.com
+**ClawHub:** https://clawhub.com  
+**ClawTabs:** https://github.com/marty-mcbyte/ClawTabs
