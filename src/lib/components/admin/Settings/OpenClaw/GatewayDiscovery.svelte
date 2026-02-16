@@ -98,13 +98,13 @@
 
 <div class="gateway-discovery">
   <div class="flex items-center justify-between mb-4">
-    <h3 class="text-lg font-semibold">🔍 Auto-Scan Network</h3>
+    <h3 class="text-lg font-semibold">🔍 Gateway Discovery</h3>
     <button 
-      class="px-3 py-1.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 disabled:opacity-50"
+      class="btn-lobster px-4 py-2 text-sm"
       on:click={scanNetwork}
       disabled={scanning}
     >
-      {scanning ? 'Scanning...' : '🔍 Scan'}
+      {scanning ? '🔄 Scanning...' : '🔍 Scan Network'}
     </button>
   </div>
   
@@ -146,13 +146,13 @@
         placeholder="Enter token..."
       />
     </div>
-    <div class="flex gap-2">
+    <div class="flex gap-2 mt-3">
       <button 
-        class="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700 disabled:opacity-50"
+        class="btn-lobster px-4 py-2 text-sm"
         on:click={testConnection}
         disabled={testing}
       >
-        {testing ? 'Testing...' : '✅ Test Connection'}
+        {testing ? 'Testing...' : '✅ Connect'}
       </button>
     </div>
     {#if testResult}
@@ -162,3 +162,26 @@
     {/if}
   </div>
 </div>
+
+<style>
+	.btn-lobster {
+		background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 25%, #c92a2a 75%, #ff6b35 100%);
+		background-size: 200% 200%;
+		color: white;
+		border: none;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+	
+	.btn-lobster:hover {
+		background-position: 100% 100%;
+		box-shadow: 0 4px 20px rgba(255, 107, 53, 0.6);
+	}
+	
+	.btn-lobster:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+</style>
