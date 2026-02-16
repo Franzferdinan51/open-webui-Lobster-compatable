@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  openwebui-lobster:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # OpenClaw Integration
+      - OPENCLAW_GATEWAY_URL=http://100.106.80.61:18789
+      - OPENCLAW_GATEWAY_KEY=
+      - OPENCLAW_ENABLED=true
+      
+      # Agent Mesh Integration
+      - AGENT_MESH_URL=http://100.74.88.40:4000
+      - AGENT_MESH_KEY=openclaw-mesh-default-key
+      - AGENT_MESH_ENABLED=true
+      
+      # LM Studio (OpenAI Compatible)
+      - OPENAI_API_BASE_URLS=http://host.docker.internal:1234/v1
+      - OPENAI_API_KEYS=lm-studio
+      
+      # OpenAI (Optional)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      
+      # Database
+      - DATABASE_URL=sqlite:///./openwebui.db
+      
+      # Redis (optional, for scaling)
+      - REDIS_URL=redis://redis:6379
+      
+    volumes:
+      - ./data:/app/backend/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:
