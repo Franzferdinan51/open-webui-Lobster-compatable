@@ -12,3 +12,4 @@ export { default as Skills } from './Skills.svelte';
 export { default as Instances } from './Instances.svelte';
 export { default as ExecApprovals } from './ExecApprovals.svelte';
 export { default as Debug } from './Debug.svelte';
+export { default as GatewayDiscovery } from './GatewayDiscovery.svelte';
