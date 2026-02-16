@@ -39,8 +39,8 @@ class OpenAIModel(BaseModel):
 
 
 @router.get("/v1/models")
-async def list_openclaw_models(user: User = Depends(get_verified_user)):
-    """List all models from OpenClaw"""
+async def list_openclaw_models():
+    """List all models from OpenClaw (public endpoint)"""
     client = get_claw_client()
     claw_models = client.get_models()
     
@@ -68,11 +68,21 @@ async def list_openclaw_models(user: User = Depends(get_verified_user)):
         owned_by="openclaw"
     ))
     
+    # Add MiniMax models
+    models.append(OpenAIModel(id="minimax-portal/MiniMax-M2.5", root="minimax-portal/MiniMax-M2.5", owned_by="minimax"))
+    models.append(OpenAIModel(id="MiniMax-M2.1", root="MiniMax-M2.1", owned_by="minimax"))
+    
+    # Add LM Studio models (placeholder - actual models come from LM Studio server)
+    models.append(OpenAIModel(id="lmstudio/qwen3-coder-next", root="qwen3-coder-next", owned_by="lmstudio"))
+    models.append(OpenAIModel(id="lmstudio/qwen3-vl-30b-a3b-thinking", root="qwen3-vl-30b-a3b-thinking", owned_by="lmstudio"))
+    models.append(OpenAIModel(id="lmstudio/jan-v3-4b-base-instruct", root="jan-v3-4b-base-instruct", owned_by="lmstudio"))
+    models.append(OpenAIModel(id="lmstudio/lfm2.5-vl-1.6b", root="lfm2.5-vl-1.6b", owned_by="lmstudio"))
+    
     return {"object": "list", "data": models}
 
 
 @router.get("/v1/models/{model_id}")
-async def get_openclaw_model(model_id: str, user: User = Depends(get_verified_user)):
+async def get_openclaw_model(model_id: str):
     """Get specific model info"""
     client = get_claw_client()
     claw_models = client.get_models()
