@@ -374,6 +374,40 @@
 			</div>
 		</div>
 
+		<!-- Register with OpenWebUI -->
+		<div>
+			<div class=" mb-2.5 text-sm font-medium flex items-center gap-2">
+				🦞 Register with OpenWebUI
+			</div>
+			
+			<div class="border border-green-300 dark:border-green-700 rounded-lg p-4 bg-green-50 dark:bg-green-900/10">
+				<p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+					Register this agent as a model in OpenWebUI Lobster Edition
+				</p>
+				
+				<div class="space-y-3">
+					<div class="flex items-center gap-2 p-2 bg-white dark:bg-gray-800 rounded">
+						<span class="text-lg">🤖</span>
+						<div>
+							<p class="text-sm font-medium">🦞 OpenClaw Agent</p>
+							<p class="text-xs text-gray-500">Model ID: openclaw-agent</p>
+						</div>
+					</div>
+					
+					<button 
+						class="btn-lobster px-4 py-2 text-sm w-full"
+						on:click={testAgentConnection}
+					>
+						✅ Verify & Register Model
+					</button>
+					
+					<p class="text-xs text-gray-500">
+						This registers the agent so it appears in the model selector and can be used in chats.
+					</p>
+				</div>
+			</div>
+		</div>
+
 		<!-- Tools & Features -->
 		<div>
 			<div class=" mb-2.5 text-sm font-medium flex items-center gap-2">
