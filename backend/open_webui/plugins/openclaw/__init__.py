@@ -15,6 +15,10 @@ log = logging.getLogger(__name__)
 # OpenClaw Configuration - from env.py
 from open_webui.env import OPENCLAW_GATEWAY_URL, OPENCLAW_GATEWAY_KEY, OPENCLAW_ENABLED
 
+# Import compatibility layer
+from open_webui.plugins.openclaw import compat
+from open_webui.plugins.openclaw.middleware import OpenClawMiddleware
+
 
 class OpenClawClient:
     """Client for OpenClaw Gateway API"""

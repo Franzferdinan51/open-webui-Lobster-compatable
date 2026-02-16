@@ -1,9 +1,12 @@
 """
 OpenClaw Models Router - Expose OpenClaw models in OpenWebUI
+
+Full compatibility with OpenAI API format.
 """
 
 import logging
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 
@@ -11,6 +14,15 @@ from open_webui.utils.auth import get_verified_user
 from open_webui.models.users import User
 
 from open_webui.plugins.openclaw import get_claw_client, OpenClawClient
+from open_webui.plugins.openclaw.compat import (
+    is_openclaw_enabled,
+    get_chat_completion_url,
+    get_models_url,
+    get_headers,
+)
+
+import requests
+import json
 
 log = logging.getLogger(__name__)
 router = APIRouter()
@@ -76,40 +88,96 @@ async def get_openclaw_model(model_id: str, user: User = Depends(get_verified_us
 
 @router.post("/v1/chat/completions")
 async def chat_completions(
-    request: Dict[Any, Any],
+    request: Request,
     user: User = Depends(get_verified_user)
 ):
-    """Proxy chat completions through OpenClaw"""
-    client = get_claw_client()
+    """Proxy chat completions through OpenClaw gateway"""
     
-    model = request.get("model", "openclaw:gpt-5.2")
-    messages = request.get("messages", [])
-    stream = request.get("stream", False)
+    # Check if OpenClaw is enabled
+    if not is_openclaw_enabled():
+        raise HTTPException(status_code=503, detail="OpenClaw integration is not enabled")
     
-    # Remove openclaw: prefix for API call
+    # Get request body
+    body = await request.json()
+    
+    model = body.get("model", "openclaw:gpt-5.2")
+    messages = body.get("messages", [])
+    stream = body.get("stream", False)
+    
+    # Remove openclaw: prefix if present
     if model.startswith("openclaw:"):
         model = model[9:]
     
-    # Build request
-    kwargs = {
+    # Prepare request to OpenClaw
+    url = get_chat_completion_url()
+    headers = get_headers()
+    headers["Content-Type"] = "application/json"
+    
+    payload = {
         "model": model,
         "messages": messages,
         "stream": stream
     }
     
     # Add optional params
-    for param in ["temperature", "max_tokens", "top_p", "frequency_penalty", "presence_penalty"]:
-        if param in request:
-            kwargs[param] = request[param]
+    for param in ["temperature", "max_tokens", "top_p", "frequency_penalty", "presence_penalty", "stop"]:
+        if param in body:
+            payload[param] = body[param]
     
-    # Get response
-    response = client.chat_completion(**kwargs)
-    
-    if stream:
-        # Return streaming response
-        return response
-    else:
-        # Return regular response
-        if hasattr(response, 'json'):
+    try:
+        if stream:
+            # Handle streaming response
+            response = requests.post(url, headers=headers, json=payload, stream=True, timeout=120)
+            
+            async def generate():
+                for chunk in response.iter_content(chunk_size=None):
+                    if chunk:
+                        yield chunk
+            
+            return StreamingResponse(generate(), media_type="text/event-stream")
+        else:
+            # Handle regular response
+            response = requests.post(url, headers=headers, json=payload, timeout=120)
+            
+            if response.status_code != 200:
+                log.error(f"OpenClaw API error: {response.status_code} - {response.text}")
+                raise HTTPException(status_code=response.status_code, detail=response.text)
+            
             return response.json()
-        return response
+    
+    except Exception as e:
+        log.error(f"Error calling OpenClaw: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/v1/embeddings")
+async def embeddings(
+    request: Request,
+    user: User = Depends(get_verified_user)
+):
+    """Proxy embeddings through OpenClaw"""
+    
+    if not is_openclaw_enabled():
+        raise HTTPException(status_code=503, detail="OpenClaw integration is not enabled")
+    
+    body = await request.json()
+    model = body.get("model", "text-embedding-ada-002")
+    input_text = body.get("input", "")
+    
+    from open_webui.plugins.openclaw.compat import get_embeddings_url
+    
+    url = get_embeddings_url()
+    headers = get_headers()
+    headers["Content-Type"] = "application/json"
+    
+    payload = {
+        "model": model,
+        "input": input_text
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=60)
+        return response.json()
+    except Exception as e:
+        log.error(f"Error calling OpenClaw embeddings: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

@@ -20,6 +20,9 @@ This is **OpenWebUI Lobster Edition** - a fork of OpenWebUI with **full OpenClaw
 - 🛠️ **OpenClaw Tools** - Browser, TTS, Canvas, Memory, Agents
 - 📡 **Gateway Proxy** - Route requests through OpenClaw gateway
 - 🔄 **Bidirectional Sync** - Keep models/channels in sync
+- 🌐 **OpenAI Compatible** - All /v1/* endpoints work with OpenClaw
+- 🔌 **Ollama Compatible** - Ollama requests route through OpenClaw
+- 📊 **Model Sync** - Automatic model synchronization
 
 ### Original OpenWebUI Features (All Included)
 
@@ -80,11 +83,35 @@ OPENCLAW_ENABLED=true
 | Endpoint | Description |
 |----------|-------------|
 | `/openclaw/v1/models` | List OpenClaw models |
-| `/openclaw/v1/chat/completions` | Chat completions |
+| `/openclaw/v1/chat/completions` | Chat completions (OpenAI compatible) |
+| `/openclaw/v1/embeddings` | Embeddings (OpenAI compatible) |
 | `/openclaw/api/auth/profiles` | Auth profiles |
 | `/openclaw/api/channels` | List channels |
 | `/openclaw/api/channels/{id}/send` | Send message |
 | `/openclaw/api/skills` | List skills |
+| `/openclaw/api/sync` | Sync models from OpenClaw |
+| `/openclaw/api/status` | Get OpenClaw connection status |
+
+## 🔌 Compatibility
+
+### OpenAI API Compatibility
+All `/v1/*` endpoints are compatible with OpenAI API:
+- `/v1/models` - List models
+- `/v1/chat/completions` - Chat completions
+- `/v1/embeddings` - Text embeddings
+- `/v1/images` - Image generation (via OpenClaw)
+
+### Ollama Compatibility
+Ollama requests can be routed through OpenClaw:
+```bash
+OLLAMA_BASE_URL=http://localhost:18789/v1
+```
+
+### LM Studio Compatibility
+LM Studio works with OpenClaw models:
+```bash
+OPENAI_BASE_URL=http://localhost:18789/v1
+```
 
 ## 🛠️ Configuration
 
