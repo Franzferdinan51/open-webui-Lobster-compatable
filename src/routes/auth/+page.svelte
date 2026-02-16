@@ -241,9 +241,19 @@
 									<img
 										id="logo"
 										crossorigin="anonymous"
-										src="{WEBUI_BASE_URL}/static/favicon.png"
-										class="size-24 rounded-full"
-										alt=""
+										src="{WEBUI_BASE_URL}/static/openwebui-lobster-logo.jpg"
+										class="size-32 rounded-lg shadow-lg"
+										alt="Lobster Edition"
+									/>
+								</div>
+							{:else}
+								<div class="flex justify-center mb-6">
+									<img
+										id="logo"
+										crossorigin="anonymous"
+										src="{WEBUI_BASE_URL}/static/openwebui-lobster-logo.jpg"
+										class="size-24 rounded-lg"
+										alt="Lobster Edition"
 									/>
 								</div>
 							{/if}

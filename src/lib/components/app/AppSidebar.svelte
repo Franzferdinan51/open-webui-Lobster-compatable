@@ -7,6 +7,16 @@
 </script>
 
 <div class="min-w-[4.5rem] bg-gray-50 dark:bg-gray-950 flex gap-2.5 flex-col pt-8">
+	<!-- Lobster Logo at top -->
+	<div class="flex justify-center mb-2">
+		<img
+			src="{WEBUI_BASE_URL}/static/openwebui-lobster-logo.jpg"
+			class="size-10 rounded-lg shadow-sm"
+			alt="Lobster"
+			draggable="false"
+		/>
+	</div>
+
 	<div class="flex justify-center relative">
 		{#if selected === 'home'}
 			<div class="absolute top-0 left-0 flex h-full">
