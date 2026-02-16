@@ -13,6 +13,9 @@ export DEFAULT_MODELS="openclaw/*,lmstudio/*,minimax-portal/*"
 export DEFAULT_PINNED_MODELS="openclaw/gpt-5.2,lmstudio/qwen3-coder-next,minimax-portal/MiniMax-M2.5"
 
 # OpenClaw Gateway as primary model source
+# Add as preset connections (both Ollama and OpenAI-compatible)
+export OLLAMA_BASE_URLS="http://localhost:18789;http://100.106.80.61:18789"
+export OPENAI_API_BASE_URLS="http://localhost:18789/v1;http://100.106.80.61:18789/v1"
 export OLLAMA_API_BASE_URL="http://localhost:18789/v1"
 export OPENAI_API_BASE_URL="http://localhost:18789/v1"
 export OPENAI_API_KEY=""
