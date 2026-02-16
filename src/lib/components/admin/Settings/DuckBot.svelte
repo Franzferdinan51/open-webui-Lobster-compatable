@@ -310,7 +310,7 @@
 					
 					<div class="flex gap-2">
 						<button 
-							class="px-3 py-1.5 bg-orange-600 text-white rounded text-sm hover:bg-orange-700"
+							class="btn-lobster px-3 py-1.5 text-sm"
 							on:click={registerAgent}
 						>
 							🚀 Register
@@ -468,7 +468,8 @@
 	}
 	
 	.btn-lobster {
-		background: linear-gradient(135deg, #ff6b35 0%, #c92a2a 100%);
+		background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 25%, #c92a2a 75%, #ff6b35 100%);
+		background-size: 200% 200%;
 		color: white;
 		border: none;
 		padding: 0.5rem 1.5rem;
@@ -476,9 +477,32 @@
 		font-weight: 600;
 		cursor: pointer;
 		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.btn-lobster::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+		transition: left 0.5s ease;
+	}
+	
+	.btn-lobster:hover::before {
+		left: 100%;
 	}
 	
 	.btn-lobster:hover {
-		box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+		background-position: 100% 100%;
+		box-shadow: 0 4px 20px rgba(255, 107, 53, 0.6), 0 0 30px rgba(255, 140, 66, 0.3);
+		transform: translateY(-1px);
+	}
+	
+	.btn-lobster:active {
+		transform: translateY(0);
 	}
 </style>
