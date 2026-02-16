@@ -14,7 +14,7 @@
 	let ttsEnabled = true;
 	let cryptoEnabled = true;
 	let polymarketEnabled = true;
-	let socialEnabled = false; // Disabled due to X ban risk
+	let socialEnabled = false;
 
 	// Connection Status
 	let agentSmithStatus = 'Connected';
@@ -22,11 +22,24 @@
 	let agentMeshUrl = 'http://100.74.88.40:4000';
 	let comfyuiUrl = 'http://100.74.88.40:8188';
 
+	// Model Presets
+	let presets = [
+		{ name: 'OpenClaw Gateway', url: 'http://localhost:18789/v1', type: 'openai' },
+		{ name: 'MiniMax Portal', url: 'https://api.minimax.chat/v1', type: 'openai' },
+		{ name: 'LM Studio Local', url: 'http://localhost:1234/v1', type: 'openai' },
+		{ name: 'Ollama Local', url: 'http://localhost:11434', type: 'ollama' }
+	];
+
 	const save = async () => {
 		toast.success('DuckBot Settings Saved!');
 		if (saveHandler) {
 			await saveHandler();
 		}
+	};
+
+	const testConnection = async (url: string) => {
+		toast.success(`Testing connection to ${url}...`);
+		// Implementation would go here
 	};
 
 	onMount(() => {
@@ -48,6 +61,27 @@
 			</div>
 			<div class="text-xs mt-1 text-gray-500">
 				OpenWebUI with full OpenClaw Integration
+			</div>
+		</div>
+
+		<!-- Quick Links -->
+		<div>
+			<div class=" mb-2.5 text-sm font-medium flex items-center gap-2">
+				🔗 Quick Links
+			</div>
+			<div class="flex flex-wrap gap-2">
+				<a href="http://100.106.80.61:5000" target="_blank" class="px-3 py-1.5 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs hover:bg-orange-200 dark:hover:bg-orange-900/50">
+					📊 Dashboard
+				</a>
+				<a href="http://100.106.80.61:5001" target="_blank" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs hover:bg-blue-200 dark:hover:bg-blue-900/50">
+					🔧 ClawAPI
+				</a>
+				<a href="http://100.106.80.61:8188" target="_blank" class="px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs hover:bg-purple-200 dark:hover:bg-purple-900/50">
+					🎨 ComfyUI
+				</a>
+				<a href="http://100.106.80.61:18789/docs" target="_blank" class="px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs hover:bg-green-200 dark:hover:bg-green-900/50">
+					📚 API Docs
+				</a>
 			</div>
 		</div>
 
@@ -92,6 +126,29 @@
 					</div>
 					<input type="text" bind:value={comfyuiUrl} class="input" />
 				</div>
+			</div>
+		</div>
+
+		<!-- Model Presets -->
+		<div>
+			<div class=" mb-2.5 text-sm font-medium flex items-center gap-2">
+				🧠 Model Presets
+			</div>
+			
+			<div class="border border-gray-200 dark:border-gray-700 rounded-lg p-3 space-y-2">
+				{#each presets as preset}
+					<div class="flex items-center justify-between">
+						<div class="flex items-center gap-2">
+							<span>{preset.type === 'openai' ? '🤖' : '🦙'} {preset.name}</span>
+						</div>
+						<div class="flex items-center gap-2">
+							<input type="text" value={preset.url} class="input text-xs" readonly />
+							<button type="button" class="text-xs px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600" on:click={() => testConnection(preset.url)}>
+								Test
+							</button>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</div>
 
